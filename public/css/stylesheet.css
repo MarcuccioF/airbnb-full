@@ -1,0 +1,13 @@
+.avatar-image {
+  width: 40px;
+}
+
+.view {
+  color: #008080;
+  border-color: #008080;
+}
+
+.sfondo {
+  background-image: url('https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399115/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/thailand.jpg');
+  height: 100vh;
+}

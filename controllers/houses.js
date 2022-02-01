@@ -4,7 +4,7 @@ const router = express.Router()
 
 // Views
 router.get('/', (req, res) => {
-  res.send('Hello from houses')
+  res.render('./houses/list')
 })
 
 router.post('/', (req, res) => {
