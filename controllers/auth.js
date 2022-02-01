@@ -14,8 +14,27 @@ router.get('/signup', (req, res) => {
   res.render('signup')
 })
 
-router.post('/login', (req, res) => {
-  res.send('Hello from darkness')
+router.post('/login', async (req, res, next) => {
+  try {
+    let user = await Users.findOne({
+      email: req.body.email,
+      password: req.body.password
+    })
+    console.log(user)
+    if (user) {
+      req.login(user, err => {
+        if (err) {
+          throw err
+        } else {
+          res.redirect('/houses')
+        }
+      })
+    } else {
+      throw new Error('User not found')
+    }
+  } catch (err) {
+    next(err)
+  }
 })
 
 router.post('/signup', async (req, res, next) => {
@@ -40,8 +59,17 @@ router.post('/signup', async (req, res, next) => {
   }
 })
 
-router.get('/logout', (req, res) => {
-  res.send('Hello from logout')
+router.get('/logout', (req, res, next) => {
+  console.log('loggin out')
+  req.logout()
+  req.session.destroy(err => {
+    if (err) {
+      next(err)
+    }
+    res.clearCookie('connect.sid')
+    // continue coding here
+    res.redirect('login')
+  })
 })
 // Export
 module.exports = router
