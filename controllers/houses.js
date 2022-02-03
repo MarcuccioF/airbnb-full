@@ -31,7 +31,9 @@ router.get('/create', (req, res) => {
   if (!req.isAuthenticated()) {
     res.redirect('/auth/login')
   } else {
-    res.render('houses/create')
+    res.render('houses/create', {
+      user: req.user
+    })
   }
 })
 

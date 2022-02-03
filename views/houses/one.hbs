@@ -3,20 +3,25 @@
       <div class="row">
         <div class="col">
           <img
-            src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png"
+            src="{{house.photos.[0]}}"
             class="img-fluid"
             alt="firs image of the house"
           />
         </div>
         <div class="col container">
           <div class="row row-cols-3">
+						{{#each house.photos as |photo|}}
             <div class="col">
+							{{#if photo}}
               <img
-                src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png"
+                src="{{photo}}"
                 class="img-thumbnail"
                 alt="common space"
               />
+							{{/if}}
             </div>
+						{{/each}}
+<!--
             <div class="col">
               <img
                 src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_02.png"
@@ -72,7 +77,7 @@
                 class="img-thumbnail"
                 alt="bedroom 2"
               />
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -82,8 +87,8 @@
         <!-- inserire in questo div tutti gli elementi che dovranno essere presenti nella prima colonna -->
         <div class="col col-lg-8">
           <div>
-            <h1>Luxury Villa in Chaweng</h1>
-            <span>Koh Samui • 4 Rooms</span>
+            <h1>{{house.title}}</h1>
+            <span>{{house.location}} • {{house.rooms}} Rooms</span>
             <!-- card avatar -->
             <div
               class="card mb-3 mt-4 card border-white"
@@ -106,14 +111,7 @@
               </div>
             </div>
             <p>
-              Stylish, tropical, luxorios, airy and absolute stunning view over
-              the bay of Chaweng Beach, this villa combines form and function,
-              enjoying magnificient views of Samui's small islands and the sea
-              beyond. With 520sqm of indoor/outdoor living space with 7 ensuite
-              bedrooms,large living area, infinity pool, garden, air conditioned
-              gym, professional pool table, bbq and Sala, this villa is perfect
-              for up 14 adults With 260sqm (2798sqfeet) of living space and
-              260sqm of outdoor space.
+              {{house.description}}
             </p>
           </div>
           <div>
@@ -144,7 +142,7 @@
         <div class="col col-lg-4">
           <div class="card" style="width: 18rem;">
             <div class="card-body">
-              <h5 class="card-title">$350/night</h5>
+              <h5 class="card-title">${{house.price}}/night</h5>
               <span>0 Reviews</span>
               <form>
                 <textarea
