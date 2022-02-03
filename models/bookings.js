@@ -7,7 +7,9 @@ module.exports = mongoose.model('bookings', {
     ref: 'user'
   },
   date: {
-    type: Date
+    type: Date,
+    default: Date.now,
+    reqired: true
   },
   description: {
     type: String,
@@ -15,6 +17,7 @@ module.exports = mongoose.model('bookings', {
   },
   house: {
     type: ObjectId,
-    ref: 'house'
+    ref: 'houses',
+    required: true
   }
 })
