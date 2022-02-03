@@ -38,15 +38,7 @@ router.get('/create', (req, res) => {
 router.get('/:id', async (req, res, next) => {
   try {
     let house = await Houses.findById(req.params.id).populate('host')
-    // res.render(`/houses/${house._id}`)
-    res.render('houses/one')
-
-    // if (req.user) {
-    //   let booking = await Bookings.findOne({
-    //     house: house._id,
-    //     author: req.user._id
-    //   })
-    // }
+    res.render('houses/one', { house })
   } catch (err) {
     next(err)
   }
