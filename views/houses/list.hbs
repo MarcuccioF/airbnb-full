@@ -98,31 +98,36 @@
 <!-- griglia con le card relative alle case -->
 <div class="container">
 	<div class="row row-cols-4 gy-4">
-		<div class="col">
 			<!-- singola card casa -->
+			{{#each houses as |house|}}
+			<div class="col">
+				<a href="/houses/{{house._id}}" class="cardHouse">
 			<div class="card">
 				<img
-					src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png"
+					src="{{house.photos.[0]}}"
 					class="card-img-top"
 					alt="house photo"
 				/>
 				<div class="card-body">
 					<h6 class="card-subtitle mb-2 text-muted">
-						<i class="fas fa-map-marker-alt me-1"></i>Koh Samui • 4 Rooms
+						<i class="fas fa-map-marker-alt me-1"></i>{{house.location}} • {{house.rooms}} Rooms
 					</h6>
-					<h5 class="card-title">Luxury Villa in Chaweng</h5>
+					<h5 class="card-title">{{house.title}}</h5>
 					<p class="card-text">
 						<span class="text-muted"
 							><i class="fas fa-thumbs-up me-1"></i>3 reviews</span
 						>
 						<span class="text-muted position-absolute bottom-1 end-0 me-2"
-							>$350/night</span
+							>${{house.price}}/night</span
 						>
 					</p>
 				</div>
 			</div>
+		</a>
 		</div>
-		<div class="col">
+			{{/each}}
+			</div>
+		<!-- <div class="col">
 			<div class="card">
 				<img
 					src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2002/house_02_01.png"
@@ -261,4 +266,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+ </div>

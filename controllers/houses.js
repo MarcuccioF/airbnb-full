@@ -5,10 +5,12 @@ const router = express.Router()
 const Houses = require('../models/houses')
 
 // Views
-router.get('/', (req, res) => {
-  //  console.log(req.user)
+router.get('/', async (req, res) => {
+  let houses = await Houses.find({})
+  console.log(houses)
   res.render('./houses/list', {
-    user: req.user
+    user: req.user,
+    houses: houses
   })
 })
 
@@ -18,7 +20,7 @@ router.post('/', async (req, res, next) => {
       res.redirect('/auth/login')
     } else {
       req.body.host = req.user._id
-      console.log(req.body)
+      // console.log(req.body)
       let houseJustCreated = await Houses.create(req.body)
       res.redirect(`/houses/${houseJustCreated._id}`)
     }
